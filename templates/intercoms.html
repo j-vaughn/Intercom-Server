@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>Intercoms</h1>
+<a href="{{ url_for('add_intercom') }}">Add Intercom</a>
+<table border="1" cellpadding="5" cellspacing="0">
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>IP Address</th>
+    <th>Volume Modifier</th>
+    <th>Disabled</th>
+    <th>Actions</th>
+  </tr>
+  {% for i in intercoms %}
+  <tr>
+    <td>{{ i.id }}</td>
+    <td>{{ i.name }}</td>
+    <td>{{ i.ip_address }}</td>
+    <td>{{ i.volume_modifier }}</td>
+    <td>{{ "Yes" if i.disabled else "No" }}</td>
+    <td>
+      <a href="{{ url_for('edit_intercom', id=i.id) }}">Edit</a> |
+      <a href="{{ url_for('delete_intercom', id=i.id) }}" onclick="return confirm('Delete this intercom?');">Delete</a>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

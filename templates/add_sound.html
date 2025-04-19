@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>Add Sound</h1>
+<form method="post">
+  <label>Name: <input type="text" name="name" required></label>
+  <label>Filename: <input type="text" name="filename" required></label>
+  <label>Play Duration (ms): <input type="number" name="play_duration_ms" required></label>
+  <label>Volume Modifier: <input type="number" name="volume_modifier" value="0" min="-100" max="100"></label>
+  <button type="submit">Add Sound</button>
+</form>
+{% endblock %}

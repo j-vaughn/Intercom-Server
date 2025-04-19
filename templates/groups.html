@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>Intercom Groups</h1>
+<a href="{{ url_for('add_group') }}">Add Group</a>
+<table border="1" cellpadding="5" cellspacing="0">
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Members</th>
+    <th>Actions</th>
+  </tr>
+  {% for g in groups %}
+  <tr>
+    <td>{{ g.id }}</td>
+    <td>{{ g.name }}</td>
+    <td>
+      {% for i in g.intercoms %}
+        {{ i.name }}{% if not loop.last %}, {% endif %}
+      {% endfor %}
+    </td>
+    <td>
+      <a href="{{ url_for('edit_group', id=g.id) }}">Edit</a> |
+      <a href="{{ url_for('delete_group', id=g.id) }}" onclick="return confirm('Delete this group?');">Delete</a>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

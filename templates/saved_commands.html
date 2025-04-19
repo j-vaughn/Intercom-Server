@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>Saved Commands</h1>
+<a href="{{ url_for('add_saved_command') }}">Add Saved Command</a>
+<table border="1" cellpadding="5" cellspacing="0">
+  <tr>
+    <th>Name</th>
+    <th>Target Type</th>
+    <th>Action</th>
+  </tr>
+  {% for cmd in commands %}
+  <tr>
+    <td>{{ cmd.name }}</td>
+    <td>
+      {% if cmd.intercom_id %}
+        Intercom
+      {% elif cmd.intercom_group_id %}
+        Group
+      {% else %}
+        Global
+      {% endif %}
+    </td>
+    <td>
+      <a href="{{ url_for('trigger_saved_command', id=cmd.id) }}">Play</a> |
+      <a href="{{ url_for('edit_saved_command', id=cmd.id) }}">Edit</a> |
+      <a href="{{ url_for('delete_saved_command', id=cmd.id) }}" onclick="return confirm('Delete this command?');">Delete</a>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

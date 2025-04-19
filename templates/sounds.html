@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>Sounds</h1>
+<p>
+    <a href="{{ url_for('upload_sound') }}">Upload New Sound</a> |
+    <a href="{{ url_for('sync_sounds') }}" style="color: green; font-weight: bold;">Sync Sounds to All Intercoms</a>
+</p>
+<table border="1" cellpadding="5" cellspacing="0">
+<tr><th>ID</th><th>Name</th><th>Filename</th><th>Duration (ms)</th><th>Volume Modifier</th></tr>
+{% for s in sounds %}
+<tr>
+  <td>{{ s.id }}</td>
+  <td>{{ s.name }}</td>
+  <td>{{ s.filename }}</td>
+  <td>{{ s.play_duration_ms }}</td>
+  <td>{{ s.volume_modifier }}</td>
+</tr>
+{% endfor %}
+</table>
+{% endblock %}

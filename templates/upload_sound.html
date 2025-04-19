@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h2>Upload Sound</h2>
+<form method="POST" enctype="multipart/form-data">
+    <label for="name">Sound Name (no extension):</label><br>
+    <input type="text" name="name" required><br><br>
+
+    <label for="file">WAV File:</label><br>
+    <input type="file" name="file" accept=".wav" required><br><br>
+
+    <button type="submit">Upload</button>
+</form>
+{% endblock %}

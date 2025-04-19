@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+{% block content %}
+<h2>Add Saved Command</h2>
+<form method="post">
+    <label>Name: <input type="text" name="name"></label><br>
+    <label>Intercom:
+        <select name="intercom_id">
+            <option value="">-- None --</option>
+            {% for intercom in intercoms %}
+                <option value="{{ intercom.id }}">{{ intercom.name }}</option>
+            {% endfor %}
+        </select>
+    </label><br>
+    <label>Intercom Group:
+        <select name="intercom_group_id">
+            <option value="">-- None --</option>
+            {% for group in groups %}
+                <option value="{{ group.id }}">{{ group.name }}</option>
+            {% endfor %}
+        </select>
+    </label><br>
+    <label>Announcement:
+        <select name="announcement_id">
+            <option value="">-- None --</option>
+            {% for announcement in announcements %}
+                <option value="{{ announcement.id }}">{{ announcement.name }}</option>
+            {% endfor %}
+        </select>
+    </label><br>
+    <label>Sound:
+        <select name="sound_id">
+            <option value="">-- None --</option>
+            {% for sound in sounds %}
+                <option value="{{ sound.id }}">{{ sound.name }}</option>
+            {% endfor %}
+        </select>
+    </label><br>
+    <label>Volume Modifier: <input type="number" name="volume_modifier" value="50"></label><br>
+    <label>Times to Play: <input type="number" name="times_to_play" value="1"></label><br>
+    <label>Loop Forever: <input type="checkbox" name="loop_forever"></label><br>
+    <input type="submit" value="Add Command">
+</form>
+{% endblock %}

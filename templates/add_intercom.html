@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block content %}
+<h2>{{ intercom.name if intercom else "Add Intercom" }}</h2>
+<form method="post">
+    <label>Name:</label>
+    <input name="name" value="{{ intercom.name if intercom else '' }}"><br>
+    <label>IP Address:</label>
+    <input name="ip_address" value="{{ intercom.ip_address if intercom else '' }}"><br>
+    <label>Volume Modifier:</label>
+    <input name="volume_modifier" value="{{ intercom.volume_modifier if intercom else '0' }}"><br>
+    <label><input type="checkbox" name="disabled" {% if intercom and intercom.disabled %}checked{% endif %}>Disable this intercom</label>
+<br> 
+    <input type="submit" value="Save">
+</form>
+{% endblock %}

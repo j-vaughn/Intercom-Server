@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>Announcements</h1>
+<a href="{{ url_for('add_announcement') }}">Add Announcement</a>
+<table border="1" cellpadding="5" cellspacing="0">
+<tr>
+  <th>ID</th>
+  <th>Name</th>
+  <th>Volume Modifier</th>
+  <th>Sound Order</th>
+  <th>Actions</th>
+</tr>
+{% for a in announcements %}
+<tr>
+  <td>{{ a.id }}</td>
+  <td>{{ a.name }}</td>
+  <td>{{ a.volume_modifier }}</td>
+  <td>
+    {% for sid in a.sound_order.split(',') if sid %}
+      {{ sounds[ sid | int ] }}{% if not loop.last %}, {% endif %}
+    {% endfor %}
+  </td>
+  <td>
+    <a href="{{ url_for('edit_announcement', id=a.id) }}">Edit</a> |
+    <a href="{{ url_for('delete_announcement', id=a.id) }}" onclick="return confirm('Delete this announcement?');">Delete</a>
+  </td>
+</tr>
+{% endfor %}
+</table>
+{% endblock %}

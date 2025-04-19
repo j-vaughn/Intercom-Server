@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block content %}
+<h2>Announcement Commands</h2>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Intercom</th>
+        <th>Group</th>
+        <th>Announcement</th>
+        <th>Sound</th>
+        <th>Volume</th>
+        <th>Times</th>
+        <th>Loop</th>
+        <th>Actions</th>
+    </tr>
+    {% for cmd in commands %}
+    <tr>
+        <td>{{ cmd.id }}</td>
+        <td>{{ intercoms.get(cmd.intercom_id, '') }}</td>
+        <td>{{ groups.get(cmd.intercom_group_id, '') }}</td>
+        <td>{{ announcements.get(cmd.announcement_id, '') }}</td>
+        <td>{{ sounds.get(cmd.sound_id, '') }}</td>
+        <td>{{ cmd.volume_modifier }}</td>
+        <td>{{ cmd.times_to_play }}</td>
+        <td>{{ 'Yes' if cmd.loop_forever else 'No' }}</td>
+        <td><a href="{{ url_for('delete_command', cmd_id=cmd.id) }}">Delete</a></td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

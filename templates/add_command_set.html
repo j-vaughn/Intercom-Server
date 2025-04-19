@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>Add Saved Command Set</h1>
+<form method="post">
+  <label>Name:
+    <input type="text" name="name" required>
+  </label>
+  <br><br>
+  <label>Commands:</label><br>
+  {% for c in commands %}
+    <input type="checkbox" name="command_ids" value="{{ c.id }}"> {{ c.name }}<br>
+  {% endfor %}
+  <br>
+  <button type="submit">Create</button>
+</form>
+{% endblock %}

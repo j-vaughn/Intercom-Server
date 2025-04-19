@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block content %}
+<h2>{% if group %}Edit{% else %}Add{% endif %} Group</h2>
+<form method="POST">
+  <label for="name">Group Name:</label>
+  <input type="text" name="name" id="name" value="{{ group.name if group else '' }}" required><br><br>
+
+  <label>Member Intercoms:</label><br>
+  {% for intercom in intercoms %}
+    <input type="checkbox" name="intercom_ids" value="{{ intercom.id }}"
+      {% if group and intercom in group.intercoms %}checked{% endif %}>
+    {{ intercom.name }}<br>
+  {% endfor %}
+  
+  <br><input type="submit" value="Save">
+</form>
+{% endblock %}

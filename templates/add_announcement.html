@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>Add Announcement</h1>
+
+<form method="post">
+  <label>Name:
+    <input type="text" name="name" required>
+  </label>
+  <br>
+
+  <label>Volume Modifier:
+    <input type="number" name="volume_modifier" value="0" min="-100" max="100">
+  </label>
+  <br>
+
+  <label>Sound Order:</label><br>
+  <div id="sound-selects">
+    <!-- Initial dropdown -->
+    <select name="sound_order[]">
+      {% for s in sounds %}
+        <option value="{{ s.id }}">{{ s.name }}</option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <!-- Hidden template select (no name!) -->
+  <select id="sound-template" style="display: none;">
+    {% for s in sounds %}
+      <option value="{{ s.id }}">{{ s.name }}</option>
+    {% endfor %}
+  </select>
+
+  <button type="button" onclick="addDropdown()">+ Add another sound</button>
+  <br><br>
+
+  <button type="submit">Add Announcement</button>
+</form>
+
+<script>
+function addDropdown() {
+  const container = document.getElementById("sound-selects");
+  const template = document.getElementById("sound-template");
+  const newSelect = template.cloneNode(true);
+  newSelect.name = "sound_order[]";
+  newSelect.style.display = "inline-block";
+  newSelect.removeAttribute("id");
+  container.appendChild(document.createElement("br"));
+  container.appendChild(newSelect);
+}
+</script>
+{% endblock %}

@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Intercom Control</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f5f5f5; }
+
+        nav {
+            background-color: #343a40;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        nav a, .dropdown-toggle {
+            color: white;
+            text-decoration: none;
+            padding: 6px 10px;
+            border-radius: 4px;
+            position: relative;
+        }
+
+        nav a:hover, .dropdown:hover .dropdown-toggle {
+            background-color: #495057;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            background-color: #343a40;
+            top: 100%;
+            left: 0;
+            padding: 8px 0;
+            min-width: 160px;
+            z-index: 1000;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 6px 12px;
+            color: white;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .important-action {
+            background-color: #dc3545;
+            font-weight: bold;
+        }
+
+        hr {
+            border: none;
+            border-top: 2px solid #ccc;
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/"><i class="fa-solid fa-house"></i> Home</a>
+
+        <div class="dropdown">
+            <a class="dropdown-toggle" href="#"><i class="fa-solid fa-bullhorn"></i> Commands</a>
+            <div class="dropdown-menu">
+                <a href="/commands">Command Queue</a>
+                <a href="/saved_commands">Saved Commands</a>
+                <a href="/saved_command_sets">Command Sets</a>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <a class="dropdown-toggle" href="#"><i class="fa-solid fa-network-wired"></i> Intercoms</a>
+            <div class="dropdown-menu">
+                <a href="/intercoms">View Intercoms</a>
+                <a href="/intercoms/status">Status Page</a>
+                <a href="/groups">Groups</a>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <a class="dropdown-toggle" href="#"><i class="fa-solid fa-volume-high"></i> Audio</a>
+            <div class="dropdown-menu">
+                <a href="/sounds">Sounds</a>
+                <a href="/sounds/upload">Upload Sound</a>
+                <a href="/sounds/sync">Sync Sounds</a>
+	         <a href="/announcements"><i class="fa-solid fa-bell"></i> Announcements</a>
+            </div>
+        </div>
+
+       
+
+        <a href="/commands/stopall_full" class="important-action">
+            <i class="fa-solid fa-stop-circle"></i> Stop All & Clear Queue
+        </a>
+    </nav>
+
+    <hr>
+    {% block content %}{% endblock %}
+</body>
+</html>

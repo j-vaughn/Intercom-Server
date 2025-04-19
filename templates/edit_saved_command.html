@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+{% block content %}
+<h2>Edit Saved Command</h2>
+<form method="post">
+    <label>Name: <input type="text" name="name" value="{{ command.name }}"></label><br>
+    <label>Intercom:
+        <select name="intercom_id">
+            <option value="">-- None --</option>
+            {% for intercom in intercoms %}
+                <option value="{{ intercom.id }}" {% if intercom.id == command.intercom_id %}selected{% endif %}>{{ intercom.name }}</option>
+            {% endfor %}
+        </select>
+    </label><br>
+    <label>Intercom Group:
+        <select name="intercom_group_id">
+            <option value="">-- None --</option>
+            {% for group in groups %}
+                <option value="{{ group.id }}" {% if group.id == command.intercom_group_id %}selected{% endif %}>{{ group.name }}</option>
+            {% endfor %}
+        </select>
+    </label><br>
+    <label>Announcement:
+        <select name="announcement_id">
+            <option value="">-- None --</option>
+            {% for announcement in announcements %}
+                <option value="{{ announcement.id }}" {% if announcement.id == command.announcement_id %}selected{% endif %}>{{ announcement.name }}</option>
+            {% endfor %}
+        </select>
+    </label><br>
+    <label>Sound:
+        <select name="sound_id">
+            <option value="">-- None --</option>
+            {% for sound in sounds %}
+                <option value="{{ sound.id }}" {% if sound.id == command.sound_id %}selected{% endif %}>{{ sound.name }}</option>
+            {% endfor %}
+        </select>
+    </label><br>
+    <label>Volume Modifier: <input type="number" name="volume_modifier" value="{{ command.volume_modifier }}"></label><br>
+    <label>Times to Play: <input type="number" name="times_to_play" value="{{ command.times_to_play }}"></label><br>
+    <label>Loop Forever: <input type="checkbox" name="loop_forever" {% if command.loop_forever %}checked{% endif %}></label><br>
+    <input type="submit" value="Update Command">
+</form>
+{% endblock %}

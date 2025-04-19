@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Intercom Status</title>
+    <style>
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        th { background-color: #f0f0f0; }
+        .online { color: green; }
+        .offline { color: red; }
+    </style>
+</head>
+<body>
+    <h1>Intercom Status</h1>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>IP Address</th>
+            <th>Status</th>
+            <th>Last Response</th>
+        </tr>
+        {% for intercom in statuses %}
+        <tr>
+            <td>{{ intercom.name }}</td>
+            <td>{{ intercom.ip }}</td>
+            <td class="{{ 'online' if intercom.online else 'offline' }}">{{ 'Online' if intercom.online else 'Offline' }}</td>
+            <td><pre>{{ intercom.response or 'N/A' }}</pre></td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
+{% endblock %}

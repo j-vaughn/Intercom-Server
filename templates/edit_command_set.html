@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>Edit Command Set</h1>
+
+<form method="post">
+  <label>Name:
+    <input type="text" name="name" value="{{ set.name }}" required>
+  </label>
+  <br><br>
+
+  <label>Commands:</label><br>
+  {% for cmd in commands %}
+    <input type="checkbox" name="command_ids" value="{{ cmd.id }}"
+           {% if cmd.id in selected_ids %}checked{% endif %}>
+    {{ cmd.name }}<br>
+  {% endfor %}
+
+  <br>
+  <button type="submit">Save</button>
+</form>
+{% endblock %}
